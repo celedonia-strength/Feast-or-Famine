@@ -88,6 +88,15 @@
       margin: 1.25rem auto 0;
     }
 
+    .section-subtitle {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--white);
+      letter-spacing: 0.06em;
+      margin-top: 1.5rem;
+      opacity: 0.85;
+    }
+
     /* =============================================
        SCROLL FADE-UP
     ============================================= */
@@ -423,134 +432,136 @@
     }
 
     /* =============================================
-       GALLERY
+       ABOUT / MISSION
     ============================================= */
-    #gallery {
+    #about {
       background: var(--bg);
       padding: 7rem 0;
     }
 
-    .gallery-grid {
+    .about-split {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 3px;
+      gap: 4rem;
+      padding-bottom: 3rem;
     }
 
-    .gallery-item {
-      position: relative;
+    @media (min-width: 1024px) {
+      .about-split { grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    }
+
+    .about-images-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding-bottom: 3rem;
+    }
+
+    .about-images-row .about-img-sq {
+      aspect-ratio: 4 / 3;
       overflow: hidden;
-      cursor: pointer;
-      aspect-ratio: 1;
       background: #0e0e0e;
     }
 
-    .gallery-item img {
+    .about-images-row img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .gallery-item:hover img { transform: scale(1.07); }
+    .about-images-row img:hover { transform: scale(1.04); }
 
-    .gallery-hover {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 10, 10, 0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.35s;
-    }
-    .gallery-item:hover .gallery-hover { background: rgba(10, 10, 10, 0.38); }
-
-    .gallery-zoom {
-      width: 50px;
-      height: 50px;
-      border: 1px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transform: scale(0.75);
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .gallery-item:hover .gallery-zoom { opacity: 1; transform: scale(1); }
-    .gallery-zoom svg { width: 20px; height: 20px; fill: var(--gold); }
-
-    @media (min-width: 540px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    /* =============================================
-       LIGHTBOX
-    ============================================= */
-    #lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: rgba(4, 4, 4, 0.97);
-      align-items: center;
-      justify-content: center;
-    }
-    #lightbox.open { display: flex; }
-
-    #lightbox-img {
-      max-width: min(90vw, 900px);
-      max-height: 88vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    .about-heading {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      color: var(--white);
+      letter-spacing: 0.06em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
     }
 
-    #lightbox-close {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      background: transparent;
-      border: 1px solid rgba(201, 168, 76, 0.5);
-      color: var(--gold);
-      width: 44px; height: 44px;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    #lightbox-close:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
-
-    #lightbox-prev,
-    #lightbox-next {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
-      background: rgba(10, 10, 10, 0.7);
-      border: 1px solid var(--border-subtle);
-      color: var(--body);
-      width: 52px; height: 52px;
+    .about-intro {
       font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
+      font-weight: 300;
+      line-height: 1.75;
+      opacity: 0.82;
+      margin-bottom: 1.25rem;
     }
-    #lightbox-prev { left: 1rem; }
-    #lightbox-next { right: 1rem; }
-    #lightbox-prev:hover,
-    #lightbox-next:hover { border-color: var(--gold); color: var(--gold); }
 
-    .lb-counter {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%; transform: translateX(-50%);
+    .mission-block {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+
+    .mission-block h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .mission-block p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+      opacity: 0.78;
+    }
+    .mission-block p + p { margin-top: 0.85rem; }
+
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .about-img-tall {
+      grid-column: 1 / -1;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #0e0e0e;
+    }
+
+    .about-img-sq {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #0e0e0e;
+    }
+
+    .about-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .about-images img:hover { transform: scale(1.04); }
+
+    /* Artist gallery link */
+    .artist-gallery-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1rem;
       font-family: 'Barlow', sans-serif;
       font-variant: small-caps;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--body);
-      opacity: 0.4;
+      opacity: 0.6;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 2px;
+      transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .artist-gallery-link:hover {
+      opacity: 1;
+      color: var(--gold);
+      border-color: rgba(201, 168, 76, 0.5);
     }
 
     /* =============================================
@@ -869,8 +880,8 @@
     <a class="nav-logo" href="#hero">F&amp;F Tattoo</a>
 
     <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#artists">Artists</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#contact" class="nav-book">Book Now</a></li>
@@ -882,8 +893,8 @@
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
+    <a href="#about"    class="m-link">About</a>
     <a href="#services" class="m-link">Services</a>
-    <a href="#gallery"  class="m-link">Gallery</a>
     <a href="#artists"  class="m-link">Artists</a>
     <a href="#contact"  class="m-link">Contact</a>
     <a href="#contact"  class="m-link">Book a Consultation</a>
@@ -918,11 +929,60 @@
 
 
   <!-- ============================================================
+       ABOUT / MISSION
+  ============================================================ -->
+  <section id="about">
+    <div class="container">
+      <div style="padding: 7rem 0 3.5rem;">
+        <div class="section-header fade-up">
+          <h2><span style="display:block; font-size: clamp(1rem, 2vw, 1.5rem); letter-spacing: 0.18em; opacity: 0.7;">Welcome to</span>Feast or Famine Tattoo</h2>
+          <div class="gold-rule"></div>
+        </div>
+      </div>
+
+      <div class="about-split">
+
+        <div class="about-text fade-up">
+          <h3 class="about-heading">Our Story</h3>
+          <p class="about-intro">At Feast or Famine Tattoo, we wear our culture with pride and put our hearts into every piece we create. Rooted in Hispanic heritage and driven by a love for the craft, our shop is a space where tradition, storytelling, and bold expression come together through ink.</p>
+          <p class="about-intro">Whether you're just passing by or have been planning your next piece for months, you're always welcome here. Walk-ins are not just accepted—they're encouraged. We keep our doors (and our books) open for anyone ready to get tattooed, no matter how big or small the idea.</p>
+          <p class="about-intro">From fine-line details to bold blackwork and custom pieces, our artists bring both skill and soul to the table. At Feast or Famine, it's about more than just tattoos—it's about building a connection, embracing our community, and turning your story into something permanent.</p>
+        </div>
+
+        <div class="about-text fade-up" style="transition-delay:.12s">
+          <h3 class="about-heading">Our Mission</h3>
+          <p class="about-intro">Our mission at Feast or Famine Tattoo is to create high-quality, custom tattoos in a space that feels like home—welcoming, inclusive, and rooted in cultural pride. We honor our Hispanic background, value every client who walks through the door, and stay true to the hustle of our craft.</p>
+          <p class="about-intro">Whether you come in with a full sleeve idea or just want something off the cuff, we're here to make sure you leave with art that means something. No egos. No pressure. Just real people doing solid work with passion and respect.</p>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin: 2.5rem 0;">
+        <a href="#contact" class="btn-gold">Book a Consultation</a>
+      </div>
+
+      <div class="about-images-row fade-up" style="transition-delay:.2s">
+        <div class="about-img-sq">
+          <img src="brand_assets/tattoo-woman-portrait-rib.png" alt="Woman portrait rib piece black and grey realism" loading="lazy">
+        </div>
+        <div class="about-img-sq">
+          <img src="brand_assets/tattoo-skull-rose.png" alt="Skull and rose tattoo" loading="lazy">
+        </div>
+        <div class="about-img-sq">
+          <img src="brand_assets/tattoo-octopus-shoulder.png" alt="Octopus shoulder piece" loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
        SERVICES
   ============================================================ -->
   <section id="services">
     <div class="container">
-      <div style="padding: 7rem 0 3.5rem;">
+      <div style="padding: 3rem 0 3.5rem;">
         <div class="section-header fade-up">
           <p class="label">What We Do</p>
           <h2>Our Services</h2>
@@ -962,93 +1022,6 @@
 
 
   <!-- ============================================================
-       GALLERY
-  ============================================================ -->
-  <section id="gallery">
-    <div class="container">
-      <div style="padding: 7rem 0 3.5rem;">
-        <div class="section-header fade-up">
-          <p class="label">The Work</p>
-          <h2>Gallery</h2>
-          <div class="gold-rule"></div>
-        </div>
-      </div>
-
-      <div class="gallery-grid">
-
-        <div class="gallery-item fade-up" data-index="0" tabindex="0" role="button" aria-label="View image 1">
-          <img src="brand_assets/tattoo-owl-chest-piece.png" alt="Large owl chest piece black and grey realism" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="1" tabindex="0" role="button" aria-label="View image 2" style="transition-delay:.04s">
-          <img src="brand_assets/tattoo-woman-portrait-rib.png" alt="Woman portrait rib piece black and grey realism" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="2" tabindex="0" role="button" aria-label="View image 3" style="transition-delay:.08s">
-          <img src="brand_assets/tattoo-moon-goddess-portrait.png" alt="Moon goddess portrait black and grey realism" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="3" tabindex="0" role="button" aria-label="View image 4" style="transition-delay:.12s">
-          <img src="brand_assets/tattoo-owl-hand.png" alt="Owl hand tattoo black and grey realism" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="4" tabindex="0" role="button" aria-label="View image 5" style="transition-delay:.16s">
-          <img src="brand_assets/tattoo-dark-creature-forearm.png" alt="Dark creature surrealism forearm" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="5" tabindex="0" role="button" aria-label="View image 6" style="transition-delay:.20s">
-          <img src="brand_assets/tattoo-skull-rose.png" alt="Skull and rose black and grey" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="6" tabindex="0" role="button" aria-label="View image 7" style="transition-delay:.24s">
-          <img src="brand_assets/tattoo-photorealistic-rose.png" alt="Photorealistic rose with script" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="7" tabindex="0" role="button" aria-label="View image 8" style="transition-delay:.28s">
-          <img src="brand_assets/tattoo-octopus-shoulder.png" alt="Octopus shoulder piece vibrant color realism" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="8" tabindex="0" role="button" aria-label="View image 9" style="transition-delay:.32s">
-          <img src="brand_assets/tattoo-tribal-seahawks-eagle.png" alt="Tribal Seahawks eagle bold color" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="9" tabindex="0" role="button" aria-label="View image 10" style="transition-delay:.36s">
-          <img src="brand_assets/tattoo-american-traditional-eagle.png" alt="American traditional eagle" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-        <div class="gallery-item fade-up" data-index="10" tabindex="0" role="button" aria-label="View image 11" style="transition-delay:.40s">
-          <img src="brand_assets/tattoo-graffiti-lettering.png" alt="Bold graffiti lettering color work" loading="lazy">
-          <div class="gallery-hover" aria-hidden="true"><div class="gallery-zoom"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div></div>
-        </div>
-
-      </div><!-- /gallery-grid -->
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       LIGHTBOX
-  ============================================================ -->
-  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-    <button id="lightbox-close" aria-label="Close">✕</button>
-    <button id="lightbox-prev" aria-label="Previous image">&#8592;</button>
-    <img id="lightbox-img" src="" alt="">
-    <button id="lightbox-next" aria-label="Next image">&#8594;</button>
-    <p class="lb-counter" id="lb-counter" aria-live="polite"></p>
-  </div>
-
-
-  <!-- ============================================================
        ARTISTS
   ============================================================ -->
   <section id="artists">
@@ -1070,11 +1043,13 @@
           </div>
           <div class="artist-body">
             <h3>Ronnie Gonzalez</h3>
-            <p>Ronnie's black and grey realism cuts deep portraits, creatures, and dark surrealism rendered with surgical precision. Work that lives on skin like it was always meant to be there.</p>
+            <p>Ronnie Gonzalez is the owner and lead artist at Feast or Famine Tattoo in Olympia, Washington. With a tattooing career that began in 2007 in Colton, California, Ronnie brings nearly two decades of experience and a deep passion for the craft. Known for his award-winning work in realism and portraiture, his style blends technical precision with a strong artistic sensibility, earning him recognition and respect throughout the tattoo community.</p>
+            <p>Ronnie opened Feast or Famine Tattoo as a space where quality, professionalism, and creative integrity come first. Whether you're looking for a detailed portrait, custom realism, or a concept brought fully to life on skin, Ronnie approaches every piece with dedication and care.</p>
             <a href="https://instagram.com/ronniegtattoos" class="artist-ig" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @ronniegtattoos
             </a>
+            <a href="artists/ronnie.html" class="artist-gallery-link">View Ronnie's Work</a>
           </div>
         </article>
 
@@ -1090,6 +1065,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @skully.ink
             </a>
+            <a href="artists/skully.html" class="artist-gallery-link">View Skully's Work</a>
           </div>
         </article>
 
@@ -1105,6 +1081,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @piercings.by.nikki.wa
             </a>
+            <a href="artists/nikki.html" class="artist-gallery-link">View Nikki's Work</a>
           </div>
         </article>
 
@@ -1120,6 +1097,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @free_art_is_needed
             </a>
+            <a href="artists/eric.html" class="artist-gallery-link">View Eric's Work</a>
           </div>
         </article>
 
@@ -1135,6 +1113,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @miketaylortattoos
             </a>
+            <a href="artists/michael.html" class="artist-gallery-link">View Michael's Work</a>
           </div>
         </article>
 
@@ -1286,8 +1265,8 @@
     <p class="footer-sub">Olympia, Washington</p>
     <div class="footer-rule"></div>
     <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
       <a href="#artists">Artists</a>
       <a href="#contact">Contact</a>
       <a href="#contact">Book Now</a>
@@ -1338,63 +1317,6 @@
 
     document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-    /* ---- Lightbox ---- */
-    const IMAGES = [
-      "brand_assets/tattoo-owl-chest-piece.png",
-      "brand_assets/tattoo-woman-portrait-rib.png",
-      "brand_assets/tattoo-moon-goddess-portrait.png",
-      "brand_assets/tattoo-owl-hand.png",
-      "brand_assets/tattoo-dark-creature-forearm.png",
-      "brand_assets/tattoo-skull-rose.png",
-      "brand_assets/tattoo-photorealistic-rose.png",
-      "brand_assets/tattoo-octopus-shoulder.png",
-      "brand_assets/tattoo-tribal-seahawks-eagle.png",
-      "brand_assets/tattoo-american-traditional-eagle.png",
-      "brand_assets/tattoo-graffiti-lettering.png",
-    ];
-
-    const lightbox = document.getElementById('lightbox');
-    const lbImg    = document.getElementById('lightbox-img');
-    const lbCtr    = document.getElementById('lb-counter');
-    let idx = 0;
-
-    function setImage(i) {
-      idx = (i + IMAGES.length) % IMAGES.length;
-      lbImg.src = IMAGES[idx];
-      lbImg.alt = 'Gallery image ' + (idx + 1) + ' of ' + IMAGES.length;
-      lbCtr.textContent = (idx + 1) + ' / ' + IMAGES.length;
-    }
-
-    function openLB(i) {
-      setImage(i);
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      document.getElementById('lightbox-close').focus();
-    }
-
-    function closeLB() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.addEventListener('click', () => openLB(parseInt(item.dataset.index)));
-      item.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLB(parseInt(item.dataset.index)); }
-      });
-    });
-
-    document.getElementById('lightbox-close').addEventListener('click', closeLB);
-    document.getElementById('lightbox-prev').addEventListener('click', e => { e.stopPropagation(); setImage(idx - 1); });
-    document.getElementById('lightbox-next').addEventListener('click', e => { e.stopPropagation(); setImage(idx + 1); });
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
-
-    document.addEventListener('keydown', e => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape')     closeLB();
-      if (e.key === 'ArrowLeft')  setImage(idx - 1);
-      if (e.key === 'ArrowRight') setImage(idx + 1);
-    });
 
     /* ---- Booking form ---- */
     document.getElementById('bookingForm').addEventListener('submit', e => {
