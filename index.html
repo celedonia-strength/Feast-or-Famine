@@ -37,8 +37,8 @@
       font-family: 'Barlow', sans-serif;
       font-weight: 400;
       line-height: 1.65;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
     }
 
     img { display: block; max-width: 100%; }
@@ -135,12 +135,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.4s ease, border-bottom 0.4s ease;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s ease, border-color 0.4s ease;
     }
 
     #nav.scrolled {
       background: rgba(10, 10, 10, 0.96);
-      border-bottom: 1px solid var(--border);
+      border-color: var(--border);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
@@ -148,7 +149,9 @@
     .nav-logo {
       display: flex;
       align-items: center;
+      align-self: center;
       flex-shrink: 0;
+      line-height: 0;
     }
 
     .nav-links {
@@ -186,13 +189,15 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       gap: 5px;
       background: none;
       border: none;
-      padding: 10px 8px;
-      min-width: 44px;
-      min-height: 44px;
+      padding: 0 8px;
+      width: 44px;
+      height: 44px;
       cursor: pointer;
+      align-self: center;
     }
     .hamburger span {
       display: block;
@@ -249,7 +254,6 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
       background-color: #050505;
     }
 
@@ -347,19 +351,22 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       border: 1px solid var(--border);
     }
 
     .service-card {
       padding: 2.75rem 2.25rem;
+      border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--card);
       position: relative;
       overflow: hidden;
       transition: background 0.3s;
     }
-    .service-card:last-child { border-bottom: none; }
+    .service-card:nth-child(even)            { border-right: none; }
+    .service-card:nth-child(3),
+    .service-card:nth-child(4)               { border-bottom: none; }
 
     .service-card::before {
       content: '';
@@ -396,18 +403,12 @@
       max-width: 320px;
     }
 
-    @media (min-width: 640px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .service-card  { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-      .service-card:nth-child(even)  { border-right: none; }
-      .service-card:nth-child(3),
-      .service-card:nth-child(4)     { border-bottom: none; }
-    }
-
     @media (min-width: 1024px) {
       .services-grid { grid-template-columns: repeat(4, 1fr); }
       .service-card  { border-right: 1px solid var(--border); border-bottom: none; }
       .service-card:nth-child(even)  { border-right: 1px solid var(--border); }
+      .service-card:nth-child(3),
+      .service-card:nth-child(4)     { border-bottom: none; }
       .service-card:last-child       { border-right: none; }
     }
 
@@ -523,26 +524,23 @@
 
     /* Artist gallery link */
     .artist-gallery-link {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      margin-top: 1rem;
+      display: block;
+      margin-top: 1.25rem;
+      padding: 0.7rem 1rem;
       font-family: 'Barlow', sans-serif;
       font-variant: small-caps;
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--body);
-      opacity: 0.6;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 2px;
-      transition: opacity 0.2s, border-color 0.2s, color 0.2s;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s;
     }
     .artist-gallery-link:hover {
-      opacity: 1;
-      color: var(--gold);
-      border-color: rgba(201, 168, 76, 0.5);
+      background: rgba(201, 168, 76, 0.08);
+      border-color: var(--gold);
     }
 
     /* =============================================
@@ -858,7 +856,42 @@
 
     @media (max-width: 639px) {
       #services, #artists, #contact, #about { padding: 4rem 0; }
-      #hero { height: 88vh; min-height: 520px; }
+      #hero { height: 100vh; min-height: 520px; }
+
+      .hero-content { padding: 0 2rem; }
+
+      .hero-eyebrow {
+        font-size: 0.85rem;
+        letter-spacing: 0.4em;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(7rem, 26vw, 11rem) !important;
+        line-height: 0.85;
+      }
+
+      .hero-title .or {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin: 0.75rem 0 1.1rem;
+      }
+
+      .hero-title span[style] {
+        font-size: clamp(1.8rem, 5.5vw, 3rem) !important;
+      }
+
+      .hero-tagline {
+        font-size: 1rem;
+        margin: 1.75rem auto 2.25rem;
+        line-height: 1.8;
+      }
+
+      .hero-bg {
+        background-image: url('brand_assets/Mobile.jpg');
+        background-position: center center;
+      }
+
+      .service-card { padding: 1.5rem 1.25rem; }
     }
   </style>
 </head>
@@ -868,7 +901,7 @@
        NAV
   ============================================================ -->
   <nav id="nav" role="navigation" aria-label="Main">
-    <a class="nav-logo" href="#hero"><img src="brand_assets/image (1).png" alt="Feast or Famine Tattoo" style="height:56px;width:auto;display:block;"></a>
+    <a class="nav-logo" href="#hero"><img src="brand_assets/image (1).png" alt="Feast or Famine Tattoo" style="height:46px;width:auto;display:block;"></a>
 
     <ul class="nav-links" role="list">
       <li><a href="#about">About</a></li>
@@ -1031,8 +1064,6 @@
           </div>
           <div class="artist-body">
             <h3>Ronnie Gonzalez</h3>
-            <p>Ronnie Gonzalez is the owner and lead artist at Feast or Famine Tattoo in Olympia, Washington. With a tattooing career that began in 2007 in Colton, California, Ronnie brings nearly two decades of experience and a deep passion for the craft. Known for his award-winning work in realism and portraiture, his style blends technical precision with a strong artistic sensibility, earning him recognition and respect throughout the tattoo community.</p>
-            <p>Ronnie opened Feast or Famine Tattoo as a space where quality, professionalism, and creative integrity come first. Whether you're looking for a detailed portrait, custom realism, or a concept brought fully to life on skin, Ronnie approaches every piece with dedication and care.</p>
             <a href="https://instagram.com/ronniegtattoos" class="artist-ig" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @ronniegtattoos
@@ -1048,7 +1079,6 @@
           </div>
           <div class="artist-body">
             <h3>Skully</h3>
-            <p>Bold concepts, masterful cover-ups Skully approaches every piece as its own world. If you've got an idea that doesn't fit a box, this is where it gets made.</p>
             <a href="https://instagram.com/skully.ink" class="artist-ig" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @skully.ink
@@ -1064,7 +1094,6 @@
           </div>
           <div class="artist-body">
             <h3>Nikki</h3>
-            <p>Precision placement, professional aftercare guidance, and a calm chair-side manner. Nikki handles all studio piercings with the same care the tattoo artists bring to ink.</p>
             <a href="https://instagram.com/piercings.by.nikki.wa" class="artist-ig" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @piercings.by.nikki.wa
@@ -1080,7 +1109,6 @@
           </div>
           <div class="artist-body">
             <h3>Eric</h3>
-            <p>Art that refuses to be conventional. Eric brings a fine-art sensibility to tattooing bold color, illustrative linework, and a refusal to take the easy road on any piece.</p>
             <a href="https://instagram.com/free_art_is_needed" class="artist-ig" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @free_art_is_needed
@@ -1096,7 +1124,6 @@
           </div>
           <div class="artist-body">
             <h3>Michael Taylor</h3>
-            <p>Steeped in the classics, sharp on the new. Michael's traditional work carries the weight of the form's heritage clean lines, rich fills, imagery built to last a lifetime.</p>
             <a href="https://instagram.com/miketaylortattoos" class="artist-ig" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
               @miketaylortattoos
