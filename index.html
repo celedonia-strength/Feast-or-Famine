@@ -251,7 +251,7 @@
                   visibility 0s linear 0s;
       pointer-events: auto;
     }
-    .mobile-menu > a {
+    .mobile-menu a {
       display: block;
       padding: 0.9rem 2rem;
       font-family: 'Barlow', sans-serif;
@@ -267,69 +267,13 @@
       transition: color 0.2s, background 0.2s,
                   opacity 0.25s ease, transform 0.25s ease;
     }
-    .mobile-menu > a:last-child { border-bottom: none; color: var(--gold); }
-    .mobile-menu > a:hover { color: var(--gold); background: rgba(201, 168, 76, 0.04); }
-
-    /* Artists accordion */
-    .mobile-artists-dropdown {
-      border-bottom: 1px solid var(--border-subtle);
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-    .mobile-artists-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0.9rem 2rem;
-      background: none;
-      border: none;
-      font-family: 'Barlow', sans-serif;
-      font-variant: small-caps;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--body);
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .mobile-artists-toggle:hover { color: var(--gold); }
-    .mobile-artists-toggle svg {
-      flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .mobile-artists-dropdown.open .mobile-artists-toggle { color: var(--gold); }
-    .mobile-artists-dropdown.open .mobile-artists-toggle svg { transform: rotate(180deg); }
-    .mobile-artists-submenu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.38s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .mobile-artists-dropdown.open .mobile-artists-submenu { max-height: 400px; }
-    .mobile-artists-submenu a {
-      display: block;
-      padding: 0.75rem 2rem 0.75rem 2.75rem;
-      font-family: 'Barlow', sans-serif;
-      font-variant: small-caps;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(232, 228, 222, 0.65);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: color 0.2s, background 0.2s;
-    }
-    .mobile-artists-submenu a:last-child { border-bottom: none; }
-    .mobile-artists-submenu a:hover { color: var(--gold); background: rgba(201, 168, 76, 0.04); }
-
-    /* Stagger: target all direct children (mix of a and div) */
-    .mobile-menu.open > *:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
-    .mobile-menu.open > *:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.13s; }
-    .mobile-menu.open > *:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.18s; }
-    .mobile-menu.open > *:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 0.23s; }
-    .mobile-menu.open > *:nth-child(5) { opacity: 1; transform: translateX(0); transition-delay: 0.28s; }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--gold); }
+    .mobile-menu a:hover { color: var(--gold); background: rgba(201, 168, 76, 0.04); }
+    .mobile-menu.open a:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
+    .mobile-menu.open a:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.13s; }
+    .mobile-menu.open a:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.18s; }
+    .mobile-menu.open a:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 0.23s; }
+    .mobile-menu.open a:nth-child(5) { opacity: 1; transform: translateX(0); transition-delay: 0.28s; }
 
     @media (min-width: 768px) {
       .hamburger   { display: none; }
@@ -1012,21 +956,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about"    class="m-link">About</a>
     <a href="#services" class="m-link">Services</a>
-    <div class="mobile-artists-dropdown" id="artistsDropdown">
-      <button class="mobile-artists-toggle" id="artistsToggle" aria-expanded="false">
-        Meet the Artists
-        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
-          <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <div class="mobile-artists-submenu">
-        <a href="artists/ronnie.html" class="m-link">Ronnie Gonzalez</a>
-        <a href="artists/nikki.html"  class="m-link">Nikki</a>
-        <a href="artists/michael.html" class="m-link">Michael Taylor</a>
-        <a href="artists/eric.html"   class="m-link">Eric</a>
-        <a href="artists/skully.html" class="m-link">Skully</a>
-      </div>
-    </div>
+    <a href="#artists"  class="m-link">Artists</a>
     <a href="shop.html" class="m-link">Merchandise</a>
     <a href="#contact"  class="m-link">Book a Consultation</a>
   </div>
@@ -1414,22 +1344,10 @@
     const hamburger  = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    const artistsToggle   = document.getElementById('artistsToggle');
-    const artistsDropdown = document.getElementById('artistsDropdown');
-
     hamburger.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('open');
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open);
-      if (!open) {
-        artistsDropdown.classList.remove('open');
-        artistsToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    artistsToggle.addEventListener('click', () => {
-      const open = artistsDropdown.classList.toggle('open');
-      artistsToggle.setAttribute('aria-expanded', open);
     });
 
     document.querySelectorAll('.m-link').forEach(link => {
@@ -1437,8 +1355,6 @@
         mobileMenu.classList.remove('open');
         hamburger.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
-        artistsDropdown.classList.remove('open');
-        artistsToggle.setAttribute('aria-expanded', 'false');
       });
     });
 
