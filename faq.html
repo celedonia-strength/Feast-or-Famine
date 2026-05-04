@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ | Feast or Famine Tattoo</title>
+  <meta name="description" content="Frequently asked questions about Feast or Famine Tattoo in Olympia, WA — booking, pricing, walk-ins, aftercare, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0A0A0A; --gold: #C9A84C; --body: #E8E4DE; --white: #FFFFFF;
+      --border: rgba(201, 168, 76, 0.18); --border-subtle: rgba(255, 255, 255, 0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--body); font-family: 'Barlow', sans-serif; font-weight: 400; line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+    .label { font-family: 'Barlow', sans-serif; font-variant: small-caps; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.28em; color: var(--gold); text-transform: uppercase; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .gold-rule { width: 2.5rem; height: 2px; background: var(--gold); margin: 1.25rem auto 0; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.72s cubic-bezier(0.22,1,0.36,1), transform 0.72s cubic-bezier(0.22,1,0.36,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAV */
+    #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 68px; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; transition: background 0.4s ease, border-bottom 0.4s ease; }
+    #nav.scrolled { background: rgba(10,10,10,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .nav-logo { display:flex; align-items:center; flex-shrink:0; }
+    .nav-links { display: none; list-style: none; align-items: center; gap: 2.5rem; }
+    .nav-links li a { font-family: 'Barlow', sans-serif; font-variant: small-caps; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--body); transition: color 0.2s; }
+    .nav-links li a:hover { color: var(--gold); }
+    .nav-links li a.active { color: var(--gold); }
+    .nav-book { padding: 0.5rem 1.4rem !important; border: 1px solid var(--gold); color: var(--gold) !important; transition: background 0.2s, color 0.2s !important; }
+    .nav-book:hover { background: var(--gold) !important; color: var(--bg) !important; }
+    .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; padding: 6px 4px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--body); transition: all 0.3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: rgba(10,10,10,0.98); border-bottom: 1px solid var(--border); z-index: 899; padding: 0.5rem 0 1.5rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { display: block; padding: 0.9rem 2rem; font-family: 'Barlow', sans-serif; font-variant: small-caps; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--body); border-bottom: 1px solid var(--border-subtle); transition: color 0.2s, background 0.2s; }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--gold); }
+    .mobile-menu a:hover { color: var(--gold); background: rgba(201,168,76,0.04); }
+    @media (min-width: 768px) { .hamburger { display: none; } .nav-links { display: flex; } }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 10rem 1.5rem 5rem;
+      text-align: center;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      color: var(--white);
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      margin-top: 0.75rem;
+    }
+
+    /* FAQ */
+    .faq-section { padding: 5rem 0 7rem; }
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border-subtle); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      cursor: pointer;
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-question.open { color: var(--gold); }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.3s;
+      color: var(--gold);
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .faq-question.open .faq-icon { transform: rotate(45deg); border-color: var(--gold); }
+    .faq-answer {
+      display: none;
+      padding: 0 0 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      opacity: 0.82;
+      color: var(--body);
+    }
+    .faq-answer.open { display: block; }
+    .faq-answer ul {
+      margin: 0.75rem 0 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .faq-answer li { list-style: disc; }
+    .faq-answer p + p { margin-top: 0.75rem; }
+    .faq-answer strong { font-weight: 600; color: var(--white); }
+
+    /* CTA */
+    .cta-section { background: #0C0C0C; padding: 5rem 0; text-align: center; border-top: 1px solid var(--border-subtle); }
+    .cta-section h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(2.5rem,5vw,4rem); color: var(--white); letter-spacing: 0.06em; margin-bottom: 1rem; }
+    .cta-section p { font-size: 0.95rem; font-weight: 300; line-height: 1.75; opacity: 0.72; max-width: 440px; margin: 0 auto 2rem; }
+    .btn-gold { display: inline-block; padding: 0.9rem 2.4rem; background: var(--gold); color: var(--bg); font-family: 'Barlow', sans-serif; font-variant: small-caps; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; transition: background 0.25s, transform 0.25s; }
+    .btn-gold:hover { background: #ddb84e; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: #060606; border-top: 1px solid var(--border-subtle); padding: 3rem 1.5rem; text-align: center; }
+    .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 1.65rem; color: var(--gold); letter-spacing: 0.12em; margin-bottom: 0.4rem; }
+    .footer-sub { font-size: 0.78rem; font-weight: 300; color: var(--body); opacity: 0.3; letter-spacing: 0.15em; margin-bottom: 1.75rem; }
+    .footer-rule { width: 2rem; height: 1px; background: var(--border); margin: 0 auto 1.75rem; }
+    .footer-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem; }
+    .footer-nav a { font-family: 'Barlow', sans-serif; font-variant: small-caps; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--body); opacity: 0.38; transition: opacity 0.2s; }
+    .footer-nav a:hover { opacity: 0.9; }
+    .footer-copy { font-size: 0.7rem; color: var(--body); opacity: 0.22; letter-spacing: 0.1em; }
+  </style>
+</head>
+<body>
+
+  <nav id="nav" role="navigation" aria-label="Main">
+    <a class="nav-logo" href="index.html"><img src="brand_assets/image (1).png" alt="Feast or Famine Tattoo" style="height:46px;width:auto;display:block;"></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#artists">Artists</a></li>
+      <li><a href="shop.html">Merchandise</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="index.html#contact" class="nav-book">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#about"    class="m-link">About</a>
+    <a href="index.html#services" class="m-link">Services</a>
+    <a href="index.html#artists"  class="m-link">Artists</a>
+    <a href="shop.html"           class="m-link">Merchandise</a>
+    <a href="faq.html"            class="m-link">FAQ</a>
+    <a href="index.html#contact"  class="m-link">Book a Consultation</a>
+  </div>
+
+
+  <header class="page-header">
+    <p class="label">Got Questions?</p>
+    <h1>FAQ</h1>
+    <div class="gold-rule"></div>
+  </header>
+
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-list">
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Do you accept walk-ins?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>Yes — walk-ins are always welcome! If an artist is available, we'll get you in on the spot. For larger or custom pieces, we recommend booking an appointment to secure time with your preferred artist.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            How do I book an appointment?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>You can book by messaging us on Instagram <strong>@feastorfaminetattoo</strong>, calling the shop at <strong>(360) 324-7661</strong>, or stopping by in person. A deposit is required to hold your spot and will go toward the final cost of your tattoo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            What are your shop hours?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <ul>
+              <li><strong>Wednesday – Sunday:</strong> 11AM – 7PM</li>
+              <li><strong>Monday &amp; Tuesday:</strong> Closed</li>
+            </ul>
+            <p style="margin-top:0.75rem;">Hours may vary slightly by artist, so feel free to call or message ahead for availability.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            What is your cancellation or reschedule policy?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>We get it — life happens.</p>
+            <ul>
+              <li>Please give us at least <strong>48 hours notice</strong> to reschedule and keep your deposit valid.</li>
+              <li>No-shows or last-minute cancellations may forfeit the deposit.</li>
+              <li>Deposits are <strong>non-refundable</strong> but transferable with proper notice.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            How much will my tattoo cost?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>Pricing depends on size, placement, detail, and the artist.</p>
+            <ul>
+              <li>We have a <strong>shop minimum of $100</strong> for small pieces.</li>
+              <li>Larger or custom work is usually priced by the piece or hourly.</li>
+            </ul>
+            <p>Fill out our consultation form and let us know what you're wanting to get done.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Do you offer consultations?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>Yes — consultations are <strong>free</strong>. We'll sit down, talk through your idea, reference images, placement, and cost so you know exactly what to expect.</p>
+            <p>If you have any questions, please be prepared to ask them at your consultation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            How should I prepare for my tattoo?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <ul>
+              <li>Eat a good meal beforehand</li>
+              <li>Stay hydrated</li>
+              <li>Avoid alcohol or blood thinners 24 hours before</li>
+              <li>Bring sunglasses — we have bright lights!</li>
+              <li>Wear comfy clothing that exposes the tattoo area</li>
+              <li>Get plenty of rest — don't show up hungover!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Do you offer touch-ups?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>Yes! Free touch-ups are available within <strong>2–3 months</strong> of your appointment, depending on the tattoo and how it heals. Some exceptions may apply (fingers, feet, etc.).</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            What's your aftercare advice?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>Your artist will walk you through aftercare in person, but here's the short version:</p>
+            <ul>
+              <li>Remove the bandage as instructed</li>
+              <li>Wash gently with unscented soap and warm water</li>
+              <li>Pat with a dry towel and let air dry</li>
+              <li>Apply a thin layer of tattoo aftercare ointment (A&amp;D, Hustle Butter, or unscented lotion — ask your artist)</li>
+              <li>Avoid soaking, sun exposure, and picking at the tattoo while it heals</li>
+            </ul>
+            <p>Healing usually takes about <strong>2–4 weeks</strong>, depending on size and location.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Do you tattoo minors?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p><strong>NO — no exceptions.</strong> You must be 18+ with valid government-issued ID. This applies regardless of emancipation status.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Can I bring a guest with me?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>Yes, you can bring <strong>one guest</strong> for support. Please don't bring a group, children, or pets — our space is limited and we want to keep it comfortable for everyone.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            Do you take card or cash?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>We are a <strong>cash only</strong> shop.</p>
+          </div>
+        </div>
+
+        <div class="faq-item fade-up">
+          <button class="faq-question" aria-expanded="false">
+            What styles do your artists specialize in?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer" role="region">
+            <p>We offer a variety of tattoo styles — black and grey, fine line, American traditional, realism, script, floral, and more. Check out our Instagram <strong>@feastorfaminetattoo</strong> for artist portfolios and available flash.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="cta-section fade-up">
+    <div class="container">
+      <h2>Still Have Questions?</h2>
+      <p>Reach out to us directly — we're happy to help before you book.</p>
+      <a href="index.html#contact" class="btn-gold">Book a Consultation</a>
+    </div>
+  </section>
+
+
+  <footer>
+    <p class="footer-logo">Feast or Famine Tattoo</p>
+    <p class="footer-sub">Olympia, Washington</p>
+    <div class="footer-rule"></div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#artists">Artists</a>
+      <a href="shop.html">Merchandise</a>
+      <a href="faq.html">FAQ</a>
+      <a href="index.html#contact">Book Now</a>
+    </nav>
+    <p class="footer-copy">&copy; 2026 Feast or Famine Tattoo. All rights reserved.</p>
+  </footer>
+
+
+  <script>
+    'use strict';
+    const nav = document.getElementById('nav');
+    const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.querySelectorAll('.m-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        document.querySelectorAll('.faq-question.open').forEach(q => {
+          q.classList.remove('open');
+          q.setAttribute('aria-expanded', 'false');
+          q.nextElementSibling.classList.remove('open');
+        });
+        if (!isOpen) {
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.classList.add('open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

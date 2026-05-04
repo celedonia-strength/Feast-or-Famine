@@ -43,12 +43,12 @@
     .mobile-menu a:hover { color: var(--gold); background: rgba(201,168,76,0.04); }
     @media (min-width: 768px) { .hamburger { display: none; } .nav-links { display: flex; } }
     .artist-hero { position: relative; height: 62vh; min-height: 500px; display: flex; align-items: flex-end; overflow: hidden; background-color: #050505; }
-    .artist-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center 20%; }
+    .artist-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center center; }
     .artist-hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.25) 100%); }
     .artist-hero-content { position: relative; z-index: 1; padding: 3rem 2rem 3.5rem; max-width: 1280px; width: 100%; margin: 0 auto; }
     .artist-hero-content .label { margin-bottom: 0.75rem; display: block; }
     .artist-hero-name { font-family: 'Bebas Neue', cursive; font-size: clamp(4rem,10vw,8rem); color: var(--white); letter-spacing: 0.03em; line-height: 0.9; margin-bottom: 1rem; }
-    .artist-hero-bio { font-size: 0.95rem; font-weight: 300; line-height: 1.75; opacity: 0.72; max-width: 540px; margin-bottom: 1.75rem; }
+    .artist-hero-bio { font-size: 0.95rem; font-weight: 300; line-height: 1.75; opacity: 0.72; max-width: 540px; margin-bottom: 1.75rem; text-align: center; }
     .artist-hero-links { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
     .btn-gold { display: inline-block; padding: 0.9rem 2.4rem; background: var(--gold); color: var(--bg); font-family: 'Barlow', sans-serif; font-variant: small-caps; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; transition: background 0.25s, transform 0.25s; }
     .btn-gold:hover { background: #ddb84e; transform: translateY(-2px); }
@@ -95,12 +95,13 @@
 <body>
 
   <nav id="nav" role="navigation" aria-label="Main">
-    <a class="nav-logo" href="../index.html"><img src="../brand_assets/image (1).png" alt="Feast or Famine Tattoo" style="height:38px;width:auto;display:block;"></a>
+    <a class="nav-logo" href="../index.html"><img src="../brand_assets/image (1).png" alt="Feast or Famine Tattoo" style="height:46px;width:auto;display:block;"></a>
     <ul class="nav-links" role="list">
       <li><a href="../index.html#about">About</a></li>
       <li><a href="../index.html#services">Services</a></li>
       <li><a href="../index.html#artists">Artists</a></li>
       <li><a href="../shop.html">Merchandise</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
       <li><a href="../index.html#contact" class="nav-book">Book Now</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -113,12 +114,13 @@
     <a href="../index.html#services" class="m-link">Services</a>
     <a href="../index.html#artists"  class="m-link">Artists</a>
     <a href="../shop.html"           class="m-link">Merchandise</a>
+    <a href="../faq.html"            class="m-link">FAQ</a>
     <a href="../index.html#contact"  class="m-link">Book a Consultation</a>
   </div>
 
 
   <section class="artist-hero">
-    <div class="artist-hero-bg" style="background-image: url('../brand_assets/tattoo-octopus-shoulder.png');" aria-hidden="true"></div>
+    <div class="artist-hero-bg" style="background-image: url('../brand_assets/Eric\'s work/IMG_4524.jpeg');" aria-hidden="true"></div>
     <div class="artist-hero-content">
       <span class="label">Color &amp; Illustrative</span>
       <h1 class="artist-hero-name">Eric</h1>
