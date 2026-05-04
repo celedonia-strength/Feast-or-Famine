@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ | Feast or Famine Tattoo</title>
+  <title>FAQ's | Feast or Famine Tattoo</title>
   <meta name="description" content="Frequently asked questions about Feast or Famine Tattoo in Olympia, WA — booking, pricing, walk-ins, aftercare, and more.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,11 +64,11 @@
 
     /* FAQ */
     .faq-section { padding: 5rem 0 7rem; }
-    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
-    .faq-item {
-      border-bottom: 1px solid var(--border-subtle);
-    }
+    .faq-list { max-width: 780px; margin: 0 auto; }
+
+    .faq-item { border-bottom: 1px solid var(--border-subtle); }
     .faq-item:first-child { border-top: 1px solid var(--border-subtle); }
+
     .faq-question {
       width: 100%;
       background: none;
@@ -85,43 +85,51 @@
       font-size: 1rem;
       font-weight: 600;
       letter-spacing: 0.03em;
-      transition: color 0.2s;
+      transition: color 0.25s ease;
     }
     .faq-question:hover { color: var(--gold); }
-    .faq-question.open { color: var(--gold); }
+    .faq-question.open  { color: var(--gold); }
+
+    /* SVG icon — perfectly centered via flex on the svg itself */
     .faq-icon {
       flex-shrink: 0;
       width: 22px;
       height: 22px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.2s, transform 0.3s;
-      color: var(--gold);
-      font-size: 1rem;
-      line-height: 1;
+      color: var(--border);
+      transition: color 0.25s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
     }
-    .faq-question.open .faq-icon { transform: rotate(45deg); border-color: var(--gold); }
+    .faq-question:hover .faq-icon,
+    .faq-question.open  .faq-icon { color: var(--gold); }
+    .faq-question.open  .faq-icon { transform: rotate(45deg); }
+
+    /* Smooth accordion via CSS grid trick */
     .faq-answer {
-      display: none;
-      padding: 0 0 1.5rem;
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition:
+        grid-template-rows 0.42s cubic-bezier(0.22,1,0.36,1),
+        opacity 0.32s ease;
+    }
+    .faq-answer.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+    .faq-answer-inner {
+      overflow: hidden;
+      padding-bottom: 0;
+      transition: padding-bottom 0.42s cubic-bezier(0.22,1,0.36,1);
       font-size: 0.95rem;
       font-weight: 300;
       line-height: 1.8;
       opacity: 0.82;
       color: var(--body);
     }
-    .faq-answer.open { display: block; }
-    .faq-answer ul {
-      margin: 0.75rem 0 0 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-    .faq-answer li { list-style: disc; }
-    .faq-answer p + p { margin-top: 0.75rem; }
-    .faq-answer strong { font-weight: 600; color: var(--white); }
+    .faq-answer.open .faq-answer-inner { padding-bottom: 1.5rem; }
+    .faq-answer-inner ul { margin: 0.75rem 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.35rem; }
+    .faq-answer-inner li { list-style: disc; }
+    .faq-answer-inner p + p { margin-top: 0.75rem; }
+    .faq-answer-inner strong { font-weight: 600; color: var(--white); }
 
     /* CTA */
     .cta-section { background: #0C0C0C; padding: 5rem 0; text-align: center; border-top: 1px solid var(--border-subtle); }
@@ -150,7 +158,7 @@
       <li><a href="index.html#services">Services</a></li>
       <li><a href="index.html#artists">Artists</a></li>
       <li><a href="shop.html">Merchandise</a></li>
-      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="faq.html" class="active">FAQ's</a></li>
       <li><a href="index.html#contact" class="nav-book">Book Now</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -163,14 +171,14 @@
     <a href="index.html#services" class="m-link">Services</a>
     <a href="index.html#artists"  class="m-link">Artists</a>
     <a href="shop.html"           class="m-link">Merchandise</a>
-    <a href="faq.html"            class="m-link">FAQ</a>
+    <a href="faq.html"            class="m-link">FAQ's</a>
     <a href="index.html#contact"  class="m-link">Book a Consultation</a>
   </div>
 
 
   <header class="page-header">
     <p class="label">Got Questions?</p>
-    <h1>FAQ</h1>
+    <h1>FAQ's</h1>
     <div class="gold-rule"></div>
   </header>
 
@@ -182,160 +190,238 @@
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             Do you accept walk-ins?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>Yes — walk-ins are always welcome! If an artist is available, we'll get you in on the spot. For larger or custom pieces, we recommend booking an appointment to secure time with your preferred artist.</p>
+            <div class="faq-answer-inner">
+              <p>Yes — walk-ins are always welcome! If an artist is available, we'll get you in on the spot. For larger or custom pieces, we recommend booking an appointment to secure time with your preferred artist.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             How do I book an appointment?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>You can book by messaging us on Instagram <strong>@feastorfaminetattoo</strong>, calling the shop at <strong>(360) 324-7661</strong>, or stopping by in person. A deposit is required to hold your spot and will go toward the final cost of your tattoo.</p>
+            <div class="faq-answer-inner">
+              <p>You can book by messaging us on Instagram <strong>@feastorfaminetattoo</strong>, calling the shop at <strong>(360) 324-7661</strong>, or stopping by in person. A deposit is required to hold your spot and will go toward the final cost of your tattoo.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             What are your shop hours?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <ul>
-              <li><strong>Wednesday – Sunday:</strong> 11AM – 7PM</li>
-              <li><strong>Monday &amp; Tuesday:</strong> Closed</li>
-            </ul>
-            <p style="margin-top:0.75rem;">Hours may vary slightly by artist, so feel free to call or message ahead for availability.</p>
+            <div class="faq-answer-inner">
+              <ul>
+                <li><strong>Wednesday – Sunday:</strong> 11AM – 7PM</li>
+                <li><strong>Monday &amp; Tuesday:</strong> Closed</li>
+              </ul>
+              <p style="margin-top:0.75rem;">Hours may vary slightly by artist, so feel free to call or message ahead for availability.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             What is your cancellation or reschedule policy?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>We get it — life happens.</p>
-            <ul>
-              <li>Please give us at least <strong>48 hours notice</strong> to reschedule and keep your deposit valid.</li>
-              <li>No-shows or last-minute cancellations may forfeit the deposit.</li>
-              <li>Deposits are <strong>non-refundable</strong> but transferable with proper notice.</li>
-            </ul>
+            <div class="faq-answer-inner">
+              <p>We get it — life happens.</p>
+              <ul>
+                <li>Please give us at least <strong>48 hours notice</strong> to reschedule and keep your deposit valid.</li>
+                <li>No-shows or last-minute cancellations may forfeit the deposit.</li>
+                <li>Deposits are <strong>non-refundable</strong> but transferable with proper notice.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             How much will my tattoo cost?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>Pricing depends on size, placement, detail, and the artist.</p>
-            <ul>
-              <li>We have a <strong>shop minimum of $100</strong> for small pieces.</li>
-              <li>Larger or custom work is usually priced by the piece or hourly.</li>
-            </ul>
-            <p>Fill out our consultation form and let us know what you're wanting to get done.</p>
+            <div class="faq-answer-inner">
+              <p>Pricing depends on size, placement, detail, and the artist.</p>
+              <ul>
+                <li>We have a <strong>shop minimum of $100</strong> for small pieces.</li>
+                <li>Larger or custom work is usually priced by the piece or hourly.</li>
+              </ul>
+              <p>Fill out our consultation form and let us know what you're wanting to get done.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             Do you offer consultations?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>Yes — consultations are <strong>free</strong>. We'll sit down, talk through your idea, reference images, placement, and cost so you know exactly what to expect.</p>
-            <p>If you have any questions, please be prepared to ask them at your consultation.</p>
+            <div class="faq-answer-inner">
+              <p>Yes — consultations are <strong>free</strong>. We'll sit down, talk through your idea, reference images, placement, and cost so you know exactly what to expect.</p>
+              <p>If you have any questions, please be prepared to ask them at your consultation.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             How should I prepare for my tattoo?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <ul>
-              <li>Eat a good meal beforehand</li>
-              <li>Stay hydrated</li>
-              <li>Avoid alcohol or blood thinners 24 hours before</li>
-              <li>Bring sunglasses — we have bright lights!</li>
-              <li>Wear comfy clothing that exposes the tattoo area</li>
-              <li>Get plenty of rest — don't show up hungover!</li>
-            </ul>
+            <div class="faq-answer-inner">
+              <ul>
+                <li>Eat a good meal beforehand</li>
+                <li>Stay hydrated</li>
+                <li>Avoid alcohol or blood thinners 24 hours before</li>
+                <li>Bring sunglasses — we have bright lights!</li>
+                <li>Wear comfy clothing that exposes the tattoo area</li>
+                <li>Get plenty of rest — don't show up hungover!</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             Do you offer touch-ups?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>Yes! Free touch-ups are available within <strong>2–3 months</strong> of your appointment, depending on the tattoo and how it heals. Some exceptions may apply (fingers, feet, etc.).</p>
+            <div class="faq-answer-inner">
+              <p>Yes! Free touch-ups are available within <strong>2–3 months</strong> of your appointment, depending on the tattoo and how it heals. Some exceptions may apply (fingers, feet, etc.).</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             What's your aftercare advice?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>Your artist will walk you through aftercare in person, but here's the short version:</p>
-            <ul>
-              <li>Remove the bandage as instructed</li>
-              <li>Wash gently with unscented soap and warm water</li>
-              <li>Pat with a dry towel and let air dry</li>
-              <li>Apply a thin layer of tattoo aftercare ointment (A&amp;D, Hustle Butter, or unscented lotion — ask your artist)</li>
-              <li>Avoid soaking, sun exposure, and picking at the tattoo while it heals</li>
-            </ul>
-            <p>Healing usually takes about <strong>2–4 weeks</strong>, depending on size and location.</p>
+            <div class="faq-answer-inner">
+              <p>Your artist will walk you through aftercare in person, but here's the short version:</p>
+              <ul>
+                <li>Remove the bandage as instructed</li>
+                <li>Wash gently with unscented soap and warm water</li>
+                <li>Pat with a dry towel and let air dry</li>
+                <li>Apply a thin layer of tattoo aftercare ointment (A&amp;D, Hustle Butter, or unscented lotion — ask your artist)</li>
+                <li>Avoid soaking, sun exposure, and picking at the tattoo while it heals</li>
+              </ul>
+              <p>Healing usually takes about <strong>2–4 weeks</strong>, depending on size and location.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             Do you tattoo minors?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p><strong>NO — no exceptions.</strong> You must be 18+ with valid government-issued ID. This applies regardless of emancipation status.</p>
+            <div class="faq-answer-inner">
+              <p><strong>NO — no exceptions.</strong> You must be 18+ with valid government-issued ID. This applies regardless of emancipation status.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             Can I bring a guest with me?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>Yes, you can bring <strong>one guest</strong> for support. Please don't bring a group, children, or pets — our space is limited and we want to keep it comfortable for everyone.</p>
+            <div class="faq-answer-inner">
+              <p>Yes, you can bring <strong>one guest</strong> for support. Please don't bring a group, children, or pets — our space is limited and we want to keep it comfortable for everyone.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             Do you take card or cash?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>We are a <strong>cash only</strong> shop.</p>
+            <div class="faq-answer-inner">
+              <p>We are a <strong>cash only</strong> shop.</p>
+            </div>
           </div>
         </div>
 
         <div class="faq-item fade-up">
           <button class="faq-question" aria-expanded="false">
             What styles do your artists specialize in?
-            <span class="faq-icon" aria-hidden="true">+</span>
+            <svg class="faq-icon" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="0.75" y="0.75" width="20.5" height="20.5"/>
+              <line x1="11" y1="6" x2="11" y2="16"/>
+              <line x1="6"  y1="11" x2="16" y2="11"/>
+            </svg>
           </button>
           <div class="faq-answer" role="region">
-            <p>We offer a variety of tattoo styles — black and grey, fine line, American traditional, realism, script, floral, and more. Check out our Instagram <strong>@feastorfaminetattoo</strong> for artist portfolios and available flash.</p>
+            <div class="faq-answer-inner">
+              <p>We offer a variety of tattoo styles — black and grey, fine line, American traditional, realism, script, floral, and more. Check out our Instagram <strong>@feastorfaminetattoo</strong> for artist portfolios and available flash.</p>
+            </div>
           </div>
         </div>
 
@@ -362,7 +448,7 @@
       <a href="index.html#services">Services</a>
       <a href="index.html#artists">Artists</a>
       <a href="shop.html">Merchandise</a>
-      <a href="faq.html">FAQ</a>
+      <a href="faq.html">FAQ's</a>
       <a href="index.html#contact">Book Now</a>
     </nav>
     <p class="footer-copy">&copy; 2026 Feast or Famine Tattoo. All rights reserved.</p>
