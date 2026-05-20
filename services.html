@@ -79,21 +79,19 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       border: 1px solid var(--border);
     }
     .service-card {
       padding: 2.75rem 2.25rem;
-      border-right: 1px solid var(--border);
+      border-right: none;
       border-bottom: 1px solid var(--border);
       background: var(--card);
       position: relative;
       overflow: hidden;
       transition: background 0.3s;
     }
-    .service-card:nth-child(even)         { border-right: none; }
-    .service-card:nth-last-child(-n+2)    { border-bottom: none; }
-    .service-card:only-child              { border-right: none; border-bottom: none; }
+    .service-card:last-child { border-bottom: none; }
     .service-card::before {
       content: '';
       position: absolute;
@@ -108,17 +106,23 @@
     .service-card h3 { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--white); letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.8rem; }
     .service-card p { font-size: 0.88rem; font-weight: 300; line-height: 1.75; opacity: 0.72; max-width: 320px; }
 
+    @media (min-width: 600px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card { border-right: 1px solid var(--border); }
+      .service-card:last-child { border-bottom: 1px solid var(--border); }
+      .service-card:nth-child(even) { border-right: none; }
+      .service-card:nth-last-child(-n+2) { border-bottom: none; }
+    }
+
     @media (min-width: 1024px) {
       #tattoo-services .services-grid { grid-template-columns: repeat(4, 1fr); }
       #tattoo-services .service-card { border-right: 1px solid var(--border); border-bottom: none; }
       #tattoo-services .service-card:nth-child(even) { border-right: 1px solid var(--border); }
-      #tattoo-services .service-card:last-child { border-right: none; }
+      #tattoo-services .service-card:last-child { border-right: none; border-bottom: none; }
     }
 
-    /* PIERCING — single-column on desktop to span full width since it's just one card */
     @media (min-width: 768px) {
-      #piercing-services .services-grid { grid-template-columns: 1fr 1fr; }
-      #piercing-services .service-card:only-child { grid-column: 1 / -1; max-width: 640px; border-right: none; }
+      #piercing-services .service-card:only-child { max-width: 640px; }
     }
 
     /* CTA */
